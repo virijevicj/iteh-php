@@ -27,11 +27,27 @@
             (SELECT u.utakmica_id, f.naziv AS gost, u.gost_broj_poena
             FROM utakmica u
             INNER JOIN fakultet f ON u.gost_id = f.fakultet_id)b
-            ON a.utakmica_id = b.utakmica_id";
+            ON a.utakmica_id = b.utakmica_id
+            ORDER BY utakmica_id";
 
             return $conn->query($query);
         }
-    
+        
+
+        public static function get_score(mysqli $conn){
+            $query = "SELECT a.broj_utakmica, b.broj_pobeda, a.broj_utakmica - b.broj_pobeda AS broj_poraza
+            FROM
+            (SELECT COUNT(*) AS broj_utakmica
+            FROM utakmica)a
+            CROSS JOIN
+            (SELECT COUNT(*) AS broj_pobeda
+            FROM utakmica
+            WHERE (domacin_id = 1 AND domacin_broj_poena > gost_broj_poena) OR (gost_id = 1 AND gost_broj_poena > domacin_broj_poena))b 
+            ";
+
+            return $conn->query($query);
+        
+        }
     
     }
     

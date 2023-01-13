@@ -40,9 +40,12 @@ if(!$igraci){
       crossorigin="anonymous"
     />
   </head>
+
   <body>
     <div class="container">
-        <h1 class="mb-5">Tabela igraca</h1>
+        
+        <h2 class="mb-5">Tabela igraca</h2>
+        <a href="rezultati.php">Vidi rezultate</a>
 
       <table class="table table-hover table-striped">
         <thead>
