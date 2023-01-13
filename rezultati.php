@@ -32,9 +32,35 @@ if(!$utakmice){
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="container">
+
+<div class="row">
+        <div class="col-1 slika"> 
+            <a class="navbar-brand" href="/">
+                <div class="logo-image" >
+                <img src="img/logo.png" class="img-fluid" id ="logo">
+                </div>
+        </a>
+        </div>
+        <div class="navigacija col-11">
+            <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+
+        <br>
 
         <h2>Trenutni skor</h2>
         <table class="table table-hover table-striped">
