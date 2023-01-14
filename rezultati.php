@@ -48,13 +48,13 @@ if(!$utakmice){
         <div class="navigacija col-11">
             <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Active</a>
+                <a class="nav-link active" aria-current="page" href="index.php">Pregled igraca</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Dodaj igraca</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Dodaj utakmicu</a>
             </li>
         </ul>
         </div>
@@ -90,6 +90,8 @@ if(!$utakmice){
         <thead>
           <tr>
             <th scope="col">Kolo</th>
+            <th scope="col">Datum odigravanja</th>
+            <th scope="col">Vreme odigravanja</th>
             <th scope="col">Domacin</th>
             <th scope="col">Domacin broj poena</th>
             <th scope="col">Gost broj poena</th>
@@ -102,6 +104,8 @@ if(!$utakmice){
             ?>
           <tr>
             <th scope="row"><?php echo $utakmica ["utakmica_id"]  ?></th>
+            <td><?php echo $utakmica ["datum_odigravanja"]  ?></td>
+            <td><?php echo $utakmica ["vreme_odigravanja"]  ?></td>
             <td><?php echo $utakmica ["domacin"]  ?></td>
             <td><?php echo $utakmica ["domacin_broj_poena"]  ?></td>
             <td><?php echo $utakmica ["gost_broj_poena"]  ?></td>

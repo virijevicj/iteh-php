@@ -44,7 +44,7 @@ if(!$igraci){
 
   <body>
     <div class="container">
-
+    <!--navbar-->
     <div class="row">
         <div class="col-1 slika"> 
             <a class="navbar-brand" href="/">
@@ -56,23 +56,25 @@ if(!$igraci){
         <div class="navigacija col-11">
             <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Active</a>
+                 <p><a class="nav-link active" style= "color:black" aria-current="page" href="rezultati.php"><b>Rezultati</b></a></p>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <!-- <button type="button" id="btn" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><b>Dodaj igraca</b></button> -->
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#dodajIgraca">
+                     <b>Dodaj igraca</b>
+                </button>
+                
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+            <button id="btn" class="btn" data-bs-toggle="modal" data-bs-target="#myModal"><b>Dodaj utakmicu</b></button>
+            <!--PROMENI TARGER MODAL ZA DODAJ UTAKMICU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
             </li>
         </ul>
         </div>
     </div>
-    
-
 
         <br>
-        <h2 class="mb-5">Tabela igraca</h2>
-        <a href="rezultati.php">Vidi rezultate</a>
+        <h2>Tabela igraca</h2>
 
       <table class="table table-hover table-striped">
         <thead>
@@ -80,14 +82,13 @@ if(!$igraci){
             <th scope="col">Broj</th>
             <th scope="col">Ime</th>
             <th scope="col">Prezime</th>
+            <th scope="col">Datum rodjenja</th>
             <th scope="col">Pozicija</th>
-            <th scope="col">Poeni</th>
-            <th scope="col">Skokovi</th>
-            <th scope="col">Asistencije</th>
-            <th scope="col">Ukradene</th>
-            <th scope="col">Izgubljene</th>
-            <th scope="col">Blokade</th>
-            <th scope="col">Minuti</th>
+            <th scope="col">Indeks</th>
+            <th scope="col">Smer</th>
+            <th scope="col">Telefon</th>
+            <th scope="col">Email</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -98,20 +99,72 @@ if(!$igraci){
             <th scope="row"><?php echo $igrac["igrac_id"]  ?></th>
             <td><?php echo $igrac["ime"]  ?></td>
             <td><?php echo $igrac["prezime"]  ?></td>
+            <td><?php echo $igrac["datum_rodjenja"]  ?></td>
             <td><?php echo $igrac["pozicija"]  ?></td>
-            <td><?php echo $igrac["poeni"]  ?></td>
-            <td><?php echo $igrac["skokovi"]  ?></td>
-            <td><?php echo $igrac["asistencije"]  ?></td>
-            <td><?php echo $igrac["ukradene"]  ?></td>
-            <td><?php echo $igrac["izgubljene"]  ?></td>
-            <td><?php echo $igrac["blokade"]  ?></td>
-            <td><?php echo $igrac["minuti"]  ?></td>
+            <td><?php echo $igrac["indeks"]  ?></td>
+            <td><?php echo $igrac["smer"]  ?></td>
+            <td><?php echo $igrac["telefon"]  ?></td>
+            <td><?php echo $igrac["email"]  ?></td>
+            
           </tr>
           <?php
                 endwhile;           
             ?>
         </tbody>
       </table>
+
+
+    <!-- Modal dodaj igraca-->
+    <div class="modal fade" id="dodajIgraca" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">  
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container prijava-form">
+                        <form action="#" method="post" id="dodajForm">
+                            <h3 style="color: black; text-align: center">Dodaj igraca</h3>
+                            <div class="row">
+                            <div class="col-md-11 ">
+                                <div class="form-group">
+                                    <label for="">Ime</label>
+                                    <input type="text"  name="ime" class="form-control"/>
+                                </div>
+
+                                <div class="form-group">
+                                <label for="">Prezime</label>
+                                    <input type="text" name="prezime" class="form-control"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sala">Pozicija</label>
+                                     <select name="pozicija" id="pozija" class ="form-select">
+                                        <option value="bek">bek</option>
+                                        <option value="krilo">krilo</option>
+                                        <option value="centar">centar</option>
+                                        
+                                     </select>
+                                </div>
+                                
+                                <br>
+
+                                <div class="form-group">
+                                    <button id="btnDodaj" type="submit" class="btn btn-success btn-block"
+                                    style="background-color: rgb(160, 215, 255); color: black;">Dodaj</button>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 
     </div>
