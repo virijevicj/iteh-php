@@ -4,14 +4,22 @@
         public $id;
         public $ime;
         public $prezime;
+        public $datum_rodjenja;
         public $pozicija;
+        public $indeks;
+        public $smer;
+        public $telefon;
+        public $email;
 
-        public function __construct($id, $ime, $prezime, $pozicija){
-            $this->domacin_id = $domacin_id;
-            $this->gost_id = $gost_id;
-            $this->domacin_broj_poena = $domacin_broj_poena;
-            $this->gost_broj_poena = $gost_broj_poena;
-            $this->pobednik_id = $pobednik_id;
+        public function __construct( $ime, $prezime, $datum_rodjenja, $pozicija, $indeks, $smer, $telefon, $email){           
+            $this->ime = $ime;
+            $this->prezime = $prezime;
+            $this->datum_rodjenja = $datum_rodjenja;
+            $this->pozicija = $pozicija;
+            $this->indeks = $indeks;
+            $this->smer = $smer;
+            $this->telefon = $telefon;
+            $this->email = $email;
         }
     
         public static function get_all_players(mysqli $conn){
@@ -36,6 +44,17 @@
                 FROM igrac_statistika
                 WHERE igrac_id = {$id}";
             return $conn->query($query);
+        }
+
+        public static function add_new_player(Igrac $igrac, mysqli $conn){
+            $query = "INSERT INTO igrac (ime, prezime, datum_rodjenja, pozicija, indeks, smer, telefon, email)
+            VALUES ('$igrac->ime', '$igrac->prezime', '$igrac->datum_rodjenja', '$igrac->pozicija', '$igrac->indeks', '$igrac->smer', '$igrac->telefon', '$igrac->email')";
+            return $conn->query($query);
+        }
+
+        public static function getLast(mysqli $conn){
+            $q = "SELECT * FROM igrac ORDER BY igrac_id DESC LIMIT 1";
+            return $conn->query($q);
         }
 
     }
