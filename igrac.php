@@ -53,8 +53,13 @@
         }
 
         public static function getLast(mysqli $conn){
-            $q = "SELECT * FROM igrac ORDER BY igrac_id DESC LIMIT 1";
-            return $conn->query($q);
+            $query = "SELECT * FROM igrac ORDER BY igrac_id DESC LIMIT 1";
+            return $conn->query($query);
+        }
+
+        public static function delete_player($id, mysqli $conn){
+            $query = "DELETE FROM igrac WHERE igrac_id = $id ";
+            return $conn->query($query);
         }
 
     }

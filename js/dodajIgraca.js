@@ -39,6 +39,7 @@ $('#dodajForm').submit(function(){
 function appendRow(row){
     $.get("handler/getLast.php", function(data){
         console.log(data);
+        var id = data;
         // console.log(row.ime + " " + row.prezime + " " + row.datum_rodjenja + " " + row.pozicija + " " + row.indeks + " " + row.smer + "" + row.telefon + " " + row.email); 
         $("#tabelaIgraca tbody").append(
             `
@@ -51,9 +52,11 @@ function appendRow(row){
                 <td>${row.smer}</td>
                 <td>${row.telefon}</td>
                 <td>${row.email}</td>
+                
             </tr>
             `
         );
+        location.reload();
     });
 
 
