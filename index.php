@@ -50,29 +50,20 @@ if(!$utakmice){
                 <div class="logo-image" >
                 <img src="img/logo.png" class="img-fluid" id ="logo">
                 </div>
-        </a>
+            </a>
         </div>
         <div class="navigacija col-11">
             <ul class="nav justify-content-end">
             <li class="nav-item">
                  <p><a class="nav-link active" style= "color:black" aria-current="page" href="igraci.php"><b>Igraci</b></a></p>
             </li>
-            <!-- <li class="nav-item">
-                 <button type="button" id="btn" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><b>Dodaj igraca</b></button> -->
-                <!--<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#dodajIgraca">
-                     <b>Dodaj igraca</b>
-                </button>
-                
-            </li> -->
-            
-            
+            <ul class="nav justify-content-end">
             <li class="nav-item">
-            <button id="btn" class="btn" data-bs-toggle="modal" data-bs-target="#dodajUtakmicu"><b>Dodaj utakmicu</b></button>
-            <!--PROMENI TARGER MODAL ZA DODAJ UTAKMICU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-            </li>
+                 <p><a class="nav-link active" style= "color:black" aria-current="page" href="#"><b>Rezultati</b></a></p>
+            </li>     
         </ul>
         </div>
-    </div>
+</div>
 
         <br>
 
@@ -91,15 +82,15 @@ if(!$utakmice){
         <tbody>
             
           <tr>
-            <td><?php echo $skor ["broj_utakmica"] ?></td>
-            <td><?php echo $skor ["broj_pobeda"]  ?></td>
-            <td><?php echo $skor ["broj_poraza"] ?></td>
-            <td><?php echo $podaci ["fon_poeni"] ?></td>
-            <td><?php echo $podaci ["protivnik_poeni"] ?></td>
+            <td id = "brUtakmica"><?php echo $skor ["broj_utakmica"] ?></td>
+            <td id = "brPodeba"><?php echo $skor ["broj_pobeda"]  ?></td>
+            <td id = "brPoraza"><?php echo $skor ["broj_poraza"] ?></td>
+            <td id = "brDatiPoeni"><?php echo $podaci ["fon_poeni"] ?></td>
+            <td id = "brPrimljeniPoeni"><?php echo $podaci ["protivnik_poeni"] ?></td>
             <?php
             if($podaci["fon_poeni"] > $podaci["protivnik_poeni"]):
             ?>
-            <td><?php  echo "+".$podaci ["kos_razlika"] ?></td>
+            <td id = "kosRazlika"><?php  echo "+".$podaci ["kos_razlika"] ?></td>
               <?php endif ?>
 
               <?php if($podaci["fon_poeni"] < $podaci["protivnik_poeni"]):
@@ -113,8 +104,19 @@ if(!$utakmice){
         </table>
         
         <br>
-
-        <h2>Rezultati po kolima</h2>
+        
+        <div class="row">
+            <div class="col">
+                <h2>Rezultati po kolima</h2>
+            </div>
+            <div class="col-2">
+                <button id="btn" class="btn" style="background-color: rgb(160, 215, 255); color: black;" data-bs-toggle="modal" data-bs-target="#dodajUtakmicu">
+                    <b>Dodaj utakmicu</b>
+                </button>  
+            </div>
+        </div>
+        
+       
 
       <table class="table table-hover table-striped" id ="tabelaUtakmica">
         <thead>
@@ -155,13 +157,13 @@ if(!$utakmice){
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="container prijava-form">
+                    <div class="container">
                         <form action="#" method="post" id="dodajForm">
                             <h3 style="color: black; text-align: center">Dodaj utakmicu</h3>
                             <div class="row">
                             <div class="col-md-11 ">             
 
-                                <div class="form-group">
+                                <div>
                                     <label for="">Domacin</label>
                                     <!-- <input type="text"  name="domacin" class="form-control"/>
                                      -->
@@ -176,7 +178,7 @@ if(!$utakmice){
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <div >
                                 <label for="">Gost</label>
                                     <!-- <input type="text" name="gost" class="form-control"/>
                                      -->
@@ -194,30 +196,30 @@ if(!$utakmice){
 
                                 
 
-                                <div class="form-group">
+                                <div>
                                     <label for="">Domacin broj poena</label>
                                     <input type="text"  name="domacin_broj_poena" class="form-control"/>
                                 </div>
 
-                                <div class="form-group">
+                                <div>
                                     <label for="">Gost broj poena</label>
                                     <input type="text"  name="gost_broj_poena" class="form-control"/>
                                 </div>
 
-                                <div class="form-group">
+                                <div>
                                     <label for="">Datum odigravanja</label>
                                     <input type="Date"  name="datum_odigravanja" class="form-control"/>
                                 </div>
 
-                                <div class="form-group">
+                                <div>
                                     <label for="">Vreme odigravanja</label>
                                     <input type="text"  name="vreme_odigravanja" class="form-control"/>
                                 </div>
                                 
                                 <br>
 
-                                <div class="form-group">
-                                    <button id="btnDodaj" type="submit" class="btn btn-success btn-block"
+                                <div>
+                                    <button id="btnDodaj" type="submit" class="btn btn-block"
                                     style="background-color: rgb(160, 215, 255); color: black;">Dodaj</button>
                                 </div>
                             </div>
@@ -244,6 +246,5 @@ if(!$utakmice){
       crossorigin="anonymous"
     ></script>
     <script src="js/dodajUtakmicu.js"></script>
-
 </body>
 </html>

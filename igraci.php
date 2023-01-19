@@ -12,18 +12,6 @@ if(!$igraci){
     echo "Greska prilikom upita za sve igrace";
     exit();
 }
-
-// if(isset($_POST['submit']) && $_POST['submit'] == "Statistika"){
-    // $statistika_igraca = Igrac::get_player_stats($_POST["id"], $conn);    
-    // $statisika = $statistika_igraca->fetch_array();
-//     echo $statisika["poeni"];
-//     echo $statisika["skokovi"];
-//     echo $statisika["asistencije"];
-//     echo $statisika["ukradene"];
-//     echo $statisika["izgubljene"];
-//     echo $statisika["blokade"];
-//     echo $statisika["minuti"];
-// }
 ?>
 
 
@@ -48,37 +36,39 @@ if(!$igraci){
 
   <body>
     <div class="container">
-    <!--navbar-->
+<!--navbar-->
     <div class="row">
         <div class="col-1 slika"> 
             <a class="navbar-brand" href="/">
                 <div class="logo-image" >
                 <img src="img/logo.png" class="img-fluid" id ="logo">
                 </div>
-        </a>
+            </a>
         </div>
         <div class="navigacija col-11">
             <ul class="nav justify-content-end">
             <li class="nav-item">
-                 <p><a class="nav-link active" style= "color:black" aria-current="page" href="index.php"><b>Rezultati</b></a></p>
+                 <p><a class="nav-link active" style= "color:black" aria-current="page" href="#"><b>Igraci</b></a></p>
             </li>
+            <ul class="nav justify-content-end">
             <li class="nav-item">
-                <!-- <button type="button" id="btn" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><b>Dodaj igraca</b></button> -->
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#dodajIgraca">
-                     <b>Dodaj igraca</b>
-                </button>
-                
-             </li>
-             <!-- <li class="nav-item">
-            <button id="btn" class="btn" data-bs-toggle="modal" data-bs-target="#dodajUtakmicu"><b>Dodaj utakmicu</b></button>
-             PROMENI TARGER MODAL ZA DODAJ UTAKMICU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!--> 
-            <!--</li>   -->
+                 <p><a class="nav-link active" style= "color:black" aria-current="page" href="index.php"><b>Rezultati</b></a></p>
+            </li>     
         </ul>
         </div>
     </div>
 
         <br>
-        <h2>Tabela aktivnih igraca</h2>
+        <div class="row">
+            <div class="col">
+                <h2>Tabela aktivnih igraca</h2>
+            </div>
+            <div class="col-2">
+                <button id="btn" class="btn" style="background-color: rgb(160, 215, 255); color: black;" data-bs-toggle="modal" data-bs-target="#dodajIgraca">
+                    <b>Dodaj igraca</b>
+                </button>  
+            </div>
+        </div>
 
       <table id= "tabelaIgraca" class="table table-hover table-striped">
         <thead>
@@ -91,7 +81,7 @@ if(!$igraci){
             <th scope="col">Smer</th>
             <th scope="col">Telefon</th>
             <th scope="col">Email</th>
-            <th scope="col">Brisanje igraca</th>
+            <!-- <th scope="col">Brisanje igraca</th> -->
           </tr>
         </thead>
         <tbody>
@@ -108,12 +98,12 @@ if(!$igraci){
             <td><?php echo $igrac["smer"]  ?></td>
             <td><?php echo $igrac["telefon"]  ?></td>
             <td><?php echo $igrac["email"]  ?></td>
-            <td>
+            <!-- <td>
             <form action="" method = "post">
                 <input type="hidden" name="id" value="<?php echo $igrac["igrac_id"];?>">
                 <input type="submit" onclick= "obrisiIgraca(<?php echo $igrac['igrac_id'];?>)" class="btn btn-outline-dark" name="submit" value="Obrisi">
             </form>
-            </td>
+            </td> -->
             
             </tr>
            
@@ -123,7 +113,16 @@ if(!$igraci){
 
         </tbody>
       </table>
+    
 
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-2">
+            <button id="btn" class="btn" style="background-color: rgb(160, 215, 255); color: black; justify-content: end;" data-bs-toggle="modal" data-bs-target="#obrisiIgraca">
+                <b>Obrisi igraca</b>
+            </button>  
+        </div>
+    </div>
 
     <!-- Modal dodaj igraca-->
     <div class="modal fade" id="dodajIgraca" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">  
@@ -194,7 +193,7 @@ if(!$igraci){
                                 <br>
 
                                 <div class="form-group">
-                                    <button id="btnDodaj" type="submit" class="btn btn-success btn-block"
+                                    <button id="btnDodaj" type="submit" class="btn  btn-block"
                                     style="background-color: rgb(160, 215, 255); color: black;">Dodaj</button>
                                 </div>
                             </div>
@@ -205,11 +204,12 @@ if(!$igraci){
             </div>
         </div>
     </div>
+    
 
 
 
-                <!--Modal dodaj utakmicu-->
-     <div class="modal fade" id="dodajUtakmicu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">  
+    <!-- Modal obrisi igraca-->
+    <div class="modal fade" id="obrisiIgraca" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">  
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -217,70 +217,32 @@ if(!$igraci){
                 </div>
                 <div class="modal-body">
                     <div class="container prijava-form">
-                        <form action="#" method="post" id="dodajUtakmicuForm">
-                            <h3 style="color: black; text-align: center">Dodaj utakmicu</h3>
+                        <form action="#" method="post" id="dodajForm">
+                            <h3 style="color: black; text-align: center">Obrisi igraca</h3>
                             <div class="row">
-                            <div class="col-md-11 ">             
-
+                            <div class="col-md-11 ">
                                 <div class="form-group">
-                                    <label for="">Domacin</label>
-                                    <!-- <input type="text"  name="domacin" class="form-control"/>
-                                     -->
-                                    <select name="domacin" id="domacin" class ="form-select">
-                                        <?php
-                                            while ($fakultet = $fakulteti->fetch_array()):
-                                        ?>
-                                        <option value="<?php echo $fakultet["fakultet_id"]?>"> <?php echo $fakultet["naziv"] ?> </option>
-                                        <?php
-                                            endwhile;           
-                                        ?>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                <label for="">Gost</label>
-                                    <!-- <input type="text" name="gost" class="form-control"/>
-                                     -->
-                                     <select name="gost" id="gost" class ="form-select">
+                                    <label for="">Selektujte igraca za brisanje</label>
+                                    <select name="obrisi" id="obrisi" class ="form-select">
                                             <?php
-                                                $fakulteti = Fakultet::get_all_teams($conn);
-                                                 while ($fakultet = $fakulteti->fetch_array()):
+                                                $igraci = Igrac::get_all_players($conn);
+                                                 while ($igrac = $igraci->fetch_array()):
                                             ?>
-                                        <option value="<?php echo $fakultet["fakultet_id"]?>"><?php echo $fakultet["naziv"] ?></option>
+                                        <option value="<?php echo $igrac["igrac_id"]?>"><?php echo $igrac["ime"]." ".$igrac["prezime"] ?></option>
                                         <?php
                                             endwhile;           
                                         ?>
                                      </select>
                                 </div>
 
-                                
-
-                                <div class="form-group">
-                                    <label for="">Domacin broj poena</label>
-                                    <input type="text"  name="domacin_broj_poena" class="form-control"/>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="">Gost broj poena</label>
-                                    <input type="text"  name="gost_broj_poena" class="form-control"/>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="">Datum odigravanja</label>
-                                    <input type="Date"  name="datum_odigravanja" class="form-control"/>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="">Vreme odigravanja</label>
-                                    <input type="text"  name="vreme_odigravanja" class="form-control"/>
-                                </div>
-                                
                                 <br>
 
                                 <div class="form-group">
-                                    <button id="btnDodaj" type="submit" class="btn btn-block"
-                                    style="background-color: rgb(160, 215, 255); color: black;">Dodaj</button>
+                                    <input type="submit" onclick= "obrisiIgraca()" class="btn btn-outline-dark"
+                                    style="background-color: rgb(160, 215, 255); color: black;" name="submit" value="Obrisi">
                                 </div>
+
+                                
                             </div>
                             </div>
                         </form>
@@ -289,9 +251,6 @@ if(!$igraci){
             </div>
         </div>
     </div>
-
-    </div>
-
     
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
@@ -304,7 +263,8 @@ if(!$igraci){
       crossorigin="anonymous"
     ></script>
     <script src="js/dodajIgraca.js"></script>
-    <script src="js/obrisiIgraca.js"></script>r
+    <script src="js/obrisiIgraca.js"></script>
+    
 
   </body>
 </html>
